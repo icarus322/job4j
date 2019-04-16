@@ -1,5 +1,5 @@
 /**
- *Package for calculate task.
+ *Package for calculate test.
  *
  *@author Sergey Polev (pirat18l@ya.ru)
  *@version 1.0
