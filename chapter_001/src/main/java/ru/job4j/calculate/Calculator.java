@@ -35,7 +35,7 @@ public class Calculator {
 	 * @return first divided by second.
 	 */
 	public double div(double first, double second) {
-		return first % second;
+		return first / second;
 	}
 
 	/**
