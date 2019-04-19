@@ -5,10 +5,6 @@ public class Triangle {
     /**
      * Метод вычисления периметра по длинам сторон.
      *
-     * Формула.
-     *
-     * (a + b + c) / 2
-     *
      * @param a расстояние между точками a b
      * @param b расстояние между точками a c
      * @param c расстояние между точками b c
@@ -21,12 +17,6 @@ public class Triangle {
 
     /**
      * Метод должен вычислить прощадь треугольканива.
-     *
-     * Формула.
-     *
-     * √ p *(p - ab) * (p - ac) * (p - bc)
-     *
-     * где √ - корень квадратный, для извлечения корня использовать метод Math.sqrt().
      *
      * @return Вернуть прощадь, если треугольник существует или -1.
      */
@@ -43,18 +33,14 @@ public class Triangle {
     }
 
     /**
-     * Метод проверяет можно ли построить треугольник с такими длинами сторон.
-     *
-     * Подумайте какое надо написать условие, чтобы определить можно ли построить треугольник.
-     *
-     * @param ab Длина от точки a b.
-     * @param ac Длина от точки a c.
-     * @param bc Длина от точки b c.
+     * @param a Длина от точки a b.
+     * @param c Длина от точки a c.
+     * @param b Длина от точки b c.
      * @return
      */
-    private boolean exist(double ab, double bc, double ac) {
-
-        return false;
-
+    private boolean exist(double a, double b, double c) {
+        if (a + b < c) {
+            return false;
+        } return true;
     }
 }
