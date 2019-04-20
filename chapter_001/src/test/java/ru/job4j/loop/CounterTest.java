@@ -9,7 +9,7 @@ public class CounterTest {
     @Test
     public void whenSumEvenNumbersFromOneToTenThenThirty() {
         Counter counter = new Counter();
-        int result = counter.add(0,10);
-        assertThat(result,is(30));
+        int result = counter.add(0, 10);
+        assertThat(result, is(30));
         }
 }
