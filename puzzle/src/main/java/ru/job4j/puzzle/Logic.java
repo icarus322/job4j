@@ -69,36 +69,34 @@ public class Logic {
     public boolean isWin() {
         int[][] table = this.convert();
         boolean result = false;
-        if (table[0][0] + table[1][0] + table[2][0] + table[3][0] + table[4][0] == 5 ) {
-            result = true;
+        int length = table.length;
+        for (int outVertical = 0; outVertical < length; outVertical++) {
+            for (int inVertical = 0; inVertical < length; inVertical++) {
+                if (table[outVertical][inVertical] == 1){
+                    if (inVertical == length - 1){
+                        result = true;
+                    }
+                    continue;
+                } else {
+                    break;
+                }
+            }
+
         }
-        if (table[0][1] + table[1][1] + table[2][1] + table[3][1] + table[4][1] == 5 ) {
-            result = true;
+        for (int outHorizontal = 0; outHorizontal < length; outHorizontal++) {
+            for (int inHorizontal = 0; inHorizontal < length; inHorizontal++) {
+                if (table[inHorizontal][ outHorizontal] == 1){
+                    if (outHorizontal == length - 1){
+                        result = true;
+                    }
+                    continue;
+                } else {
+                    break;
+                }
+            }
+
         }
-        if (table[0][2] + table[1][2] + table[2][2] + table[3][2] + table[4][2] == 5 ) {
-            result = true;
-        }
-        if (table[0][3] + table[1][3] + table[2][3] + table[3][3] + table[4][3] == 5 ) {
-            result = true;
-        }
-        if (table[0][4] + table[1][4] + table[2][4] + table[3][4] + table[4][4] == 5 ) {
-            result = true;
-        }
-        if (table[0][0] + table[0][1] + table[0][2] + table[0][3] + table[0][4] == 5 ) {
-            result = true;
-        }
-        if (table[1][0] + table[1][1] + table[1][2] + table[1][3] + table[1][4] == 5 ) {
-            result = true;
-        }
-        if (table[2][0] + table[2][1] + table[2][2] + table[2][3] + table[2][4] == 5 ) {
-            result = true;
-        }
-        if (table[3][0] + table[3][1] + table[3][2] + table[3][3] + table[3][4] == 5 ) {
-            result = true;
-        }
-        if (table[4][0] + table[4][1] + table[4][2] + table[4][3] + table[4][4] == 5 ) {
-            result = true;
-        }
+
         return result;
     }
 
