@@ -75,8 +75,8 @@ public class Logic {
                 if (table[out][in] == 1 || table[in][out] == 1) {
                     if (in == length - 1) {
                         result = true;
+                        break;
                     }
-                    continue;
                 } else {
                     break;
                 }
