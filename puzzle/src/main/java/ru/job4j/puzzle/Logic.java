@@ -70,10 +70,10 @@ public class Logic {
         int[][] table = this.convert();
         boolean result = false;
         int length = table.length;
-        for (int outVertical = 0; outVertical < length; outVertical++) {
-            for (int inVertical = 0; inVertical < length; inVertical++) {
-                if (table[outVertical][inVertical] == 1){
-                    if (inVertical == length - 1){
+        for (int out = 0; out < length; out++) {
+            for (int in = 0; in < length; in++) {
+                if (table[out][in] == 1 || table[in][out] == 1) {
+                    if (in == length - 1) {
                         result = true;
                     }
                     continue;
@@ -81,20 +81,6 @@ public class Logic {
                     break;
                 }
             }
-
-        }
-        for (int outHorizontal = 0; outHorizontal < length; outHorizontal++) {
-            for (int inHorizontal = 0; inHorizontal < length; inHorizontal++) {
-                if (table[inHorizontal][ outHorizontal] == 1){
-                    if (outHorizontal == length - 1){
-                        result = true;
-                    }
-                    continue;
-                } else {
-                    break;
-                }
-            }
-
         }
 
         return result;
