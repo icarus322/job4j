@@ -69,7 +69,7 @@ public class Tracker {
 
     public Item[] findByName(String key) {
         int number = 0;
-        Item[] temp = new Item[position];
+        Item[] temp = new Item[this.position];
         for (int i = 0; i < this.position; i++) {
             if (this.items[i].getName().equals(key)) {
                 temp[number++] = this.items[i];
@@ -78,5 +78,11 @@ public class Tracker {
         return Arrays.copyOf(temp, number);
     }
 
+    public int getPosition() {
+        return this.position;
+    }
 
+    public Item[] getItems() {
+        return this.items;
+    }
 }
