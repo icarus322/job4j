@@ -57,17 +57,14 @@ public class TrackerTest {
     @Test
     public void whenFindItemThenReturnAllButNull() {
         Tracker tracker = new Tracker();
-        Item first = new Item("first", "testDescription", 123L);
-        tracker.add(first);
-        Item second = new Item();
-        tracker.add(second);
-        Item third = new Item("third", "testDescription2", 1234L);
-        tracker.add(third);
-        Item fourth = new Item();
-        tracker.add(fourth);
+        Item[] items = {
+                tracker.add(new Item("first", "testDescription", 123L)),
+                tracker.add(new Item("third", "testDescription2", 1234L)),
+                tracker.add(new Item()),
+                tracker.add(new Item())
+        };
         tracker.findAll();
-        assertThat(tracker.findById(second.getId()), is(notNullValue()));
-        assertThat(tracker.findById(fourth.getId()), is(notNullValue()));
+        assertThat(items, is(tracker.findAll()));
     }
 
     @Test
@@ -83,7 +80,6 @@ public class TrackerTest {
         expected[0] = first;
         expected[1] = third;
         assertArrayEquals(expected, tracker.findByName("first"));
-
     }
 
 

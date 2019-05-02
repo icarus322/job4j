@@ -54,11 +54,10 @@ public class Tracker {
         boolean result = false;
         for (int i = 0; i < this.position; i++) {
             if (this.items[i].getId().equals(id)) {
-                if (i == this.position - 1) {
-                    result = true;
-                    break;
-                }
                 System.arraycopy(this.items, i + 1, this.items, i, position - 1 - i);
+                items[position--] = null;
+                result = true;
+                break;
             }
         }
         return result;
@@ -70,21 +69,14 @@ public class Tracker {
 
     public Item[] findByName(String key) {
         int number = 0;
+        Item[] temp = new Item[position];
         for (int i = 0; i < this.position; i++) {
             if (this.items[i].getName().equals(key)) {
-                this.items[number] = this.items[i];
-                this.items[number].setName(key);
-                number++;
-            }
-            if (i == this.position - 1 && number > 0) {
-                this.items = Arrays.copyOf(this.items, number);
-                break;
+                temp[number++] = this.items[i];
             }
         }
-        return this.items;
+        return Arrays.copyOf(temp, number);
     }
-
-
 
 
 }
