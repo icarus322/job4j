@@ -5,10 +5,15 @@ import java.util.Scanner;
 public class ConsoleInput implements Input {
 
     private Scanner scanner = new Scanner(System.in);
+    private Scanner scannerInt = new Scanner(System.in);
 
-    public String ask(String question){
+    public String ask(String question) {
         System.out.println(question);
         return scanner.nextLine();
+    }
+
+    public int askInt(int question) {
+        return scannerInt.nextInt();
     }
 
 }
