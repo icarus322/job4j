@@ -66,8 +66,8 @@ public class StartUI {
         System.out.println("------------ Список заявок --------------");
         System.out.println("Номер");
         for (int i = 0; i < this.tracker.getPosition(); i++) {
-            System.out.printf("№ %2d    Имя: %s, описание: %s, id заявки:%s", (i + 1), items[i].getName(), items[i].getDecs(), items[i].getId());
-            System.out.println(items[i].getId());
+            System.out.printf("№ %2d    Имя: %s, описание: %s, id заявки: %s", (i + 1), items[i].getName(), items[i].getDecs(), items[i].getId());
+            System.out.println();
         }
         System.out.println("------------ Конец списка заявок --------------");
     }
@@ -75,33 +75,29 @@ public class StartUI {
 
     private void editItem() {
         System.out.println("------------ Редактирование заявки --------------");
-        Item[] items = this.tracker.getItems();
         showAllItem();
-        System.out.println("Укажите номер заявки, которую нужно отредактировать.");
-        int editAnswer = this.input.askInt(0);
-        if (editAnswer <= this.tracker.getPosition()) {
-            String name = this.input.ask("Введите новое имя заявки :");
-            String desc = this.input.ask("Введите новое описание заявки :");
-            long time = System.currentTimeMillis();
-            Item item = new Item(name, desc, time);
-            this.tracker.replace(items[editAnswer - 1].getId(), item);
-            System.out.println("------------ Отредактированная заявка с getId : " + item.getId() + "-----------");
+        String editAnswer = this.input.ask("Укажите id заявки, которую нужно отредактировать.");
+        String name = this.input.ask("Введите новое имя заявки :");
+        String desc = this.input.ask("Введите новое описание заявки :");
+        long time = System.currentTimeMillis();
+        Item item = new Item(name, desc, time);
+        if (this.tracker.replace(editAnswer, item)) {
+            this.tracker.replace(editAnswer, item);
+            System.out.println("------------ Отредактированная заявка с id: " + item.getId() + "-----------");
         } else {
-            System.out.println("------------ Заявки с таким номером не существует -----------");
+            System.out.println("------------ Заявки с таким id не существует -----------");
         }
     }
 
     private void deleteItem() {
         System.out.println("------------ Удаление заявки --------------");
-        Item[] items = this.tracker.getItems();
         showAllItem();
-        System.out.println("Укажите номер заявки, которую нужно удалить.");
-        int editAnswer = this.input.askInt(0);
-        if (editAnswer <= this.tracker.getPosition()) {
-            this.tracker.delete(items[editAnswer - 1].getId());
+        String editAnswer = this.input.ask("Укажите id заявки, которую нужно удалить.");
+        if (this.tracker.delete(editAnswer)) {
+            this.tracker.delete(editAnswer);
             System.out.println("------------ Заявка удалена -----------");
         } else {
-            System.out.println("------------ Заявки с таким номером не существует -----------");
+            System.out.println("------------ Заявки с таким id не существует -----------");
         }
     }
 
