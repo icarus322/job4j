@@ -94,7 +94,6 @@ public class StartUI {
         showAllItem();
         String editAnswer = this.input.ask("Укажите id заявки, которую нужно удалить.");
         if (this.tracker.delete(editAnswer)) {
-            this.tracker.delete(editAnswer);
             System.out.println("------------ Заявка удалена -----------");
         } else {
             System.out.println("------------ Заявки с таким id не существует -----------");
