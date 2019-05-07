@@ -32,8 +32,11 @@ public class PaintTest {
                 is(
                         new StringBuilder()
                                 .append("++++")
+                                .append(System.lineSeparator())
                                 .append("++++")
+                                .append(System.lineSeparator())
                                 .append("++++")
+                                .append(System.lineSeparator())
                                 .append("++++")
                                 .append(System.lineSeparator())
                                 .toString()
@@ -49,8 +52,11 @@ public class PaintTest {
                 is(
                         new StringBuilder()
                                 .append("   +   ")
+                                .append(System.lineSeparator())
                                 .append("  +++  ")
+                                .append(System.lineSeparator())
                                 .append(" +++++ ")
+                                .append(System.lineSeparator())
                                 .append("+++++++")
                                 .append(System.lineSeparator())
                                 .toString()
