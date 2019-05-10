@@ -12,21 +12,17 @@ public class StartUITest {
     private final PrintStream stdout = System.out;
     private final ByteArrayOutputStream out = new ByteArrayOutputStream();
     private static final String SB = new StringBuilder()
-            .append("Меню.")
+            .append("0. Add new Item.")
             .append(System.lineSeparator())
-            .append("0. Add new Item")
+            .append("1. Show Items.")
             .append(System.lineSeparator())
-            .append("1. Show all items")
+            .append("2. Update Item.")
             .append(System.lineSeparator())
-            .append("2. Edit item")
+            .append("3. Delete Item.")
             .append(System.lineSeparator())
-            .append("3. Delete item")
+            .append("4. Find Item by ID.")
             .append(System.lineSeparator())
-            .append("4. Find item by Id")
-            .append(System.lineSeparator())
-            .append("5. Find items by name")
-            .append(System.lineSeparator())
-            .append("6. Exit Program")
+            .append("5. Find Item by name.")
             .append(System.lineSeparator())
             .toString();
 
@@ -59,7 +55,6 @@ public class StartUITest {
                                 .append("------------ Конец списка заявок --------------")
                                 .append(System.lineSeparator())
                                 .toString()
-                        + SB
                 )
         );
     }
@@ -77,7 +72,6 @@ public class StartUITest {
                                 .append("Такой заявки не существует")
                                 .append(System.lineSeparator())
                                 .toString()
-                        + SB
                 )
         );
     }
@@ -97,7 +91,6 @@ public class StartUITest {
                                 .append("------------ Конец списка заявок --------------")
                                 .append(System.lineSeparator())
                                 .toString()
-                        + SB
                 )
         );
     }

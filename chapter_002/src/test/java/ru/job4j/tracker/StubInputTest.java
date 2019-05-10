@@ -33,7 +33,7 @@ public class StubInputTest {
                 tracker.add(new Item("second", "desc", System.currentTimeMillis()))
         };
         Item[] result = new Item[] {items[0], items[2]};
-        Input input = new StubInput(new String[]{"3", items[1].getId(), "1", "6"});
+        Input input = new StubInput(new String[]{"3", items[1].getId(), "6"});
         new StartUI(input, tracker).init();
         assertThat(tracker.findAll(), is(result));
     }
