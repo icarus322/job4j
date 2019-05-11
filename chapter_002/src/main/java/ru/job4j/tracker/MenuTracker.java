@@ -26,10 +26,6 @@ public class MenuTracker {
         this.actions.add(new DeleteItem());
         this.actions.add(new FindItemById());
         this.actions.add(new FindItemsByName());
-        for (int i = 0; i < this.actions.size(); i++) {
-            test = Arrays.copyOf(test, i + 1);
-            test[i] = i;
-        }
     }
 
     public void select(int key) {
@@ -45,6 +41,10 @@ public class MenuTracker {
     }
 
     public int[] getTest() {
+        int[] test = new int[this.actions.size()];
+        for (int i = 0; i < test.length; i++) {
+            test[i] = actions.get(i).key();
+        }
         return test;
     }
 }
