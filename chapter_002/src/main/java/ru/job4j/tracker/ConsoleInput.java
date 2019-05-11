@@ -14,17 +14,30 @@ public class ConsoleInput implements Input {
     public int ask(String question, int[] range) {
         int key = Integer.valueOf(this.ask(question));
         boolean exist = false;
-        for (int value : range){
+        for (int value : range) {
             if (value == key) {
                 exist = true;
                 break;
             }
         }
-        if (exist){
-            return  key;
+        if (exist) {
+            return key;
         } else {
-            throw new MenuOutException("Out of menu range");
+            boolean invalid = true;
+            int value = -1;
+            do {
+                try {
+                    value = ask(question, range);
+                    invalid = false;
+                } catch (MenuOutException moe) {
+                    System.out.println("Please select key from menu ");
+                } catch (NumberFormatException nfe) {
+                    System.out.println("Please enter validate data again ");
+                }
+            } while (invalid);
+            return  value;
         }
+
     }
 
 }

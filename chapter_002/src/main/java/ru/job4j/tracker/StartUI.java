@@ -29,17 +29,10 @@ public class StartUI {
 
     public void init() {
         MenuTracker menu = new MenuTracker(this.input, this.tracker);
-        List<Integer> range = new ArrayList<>();
         menu.fillActions();
-        int[] test = new int[0];
-        for (int i = 0; i < menu.getActionsLentgh(); i++) {
-            range.add(i);
-            test = Arrays.copyOf(test, i + 1);
-            test[i] = i;
-        }
         do {
             menu.show();
-            menu.select(input.ask("select:", test));
+            menu.select(input.ask("select:", menu.getTest()));
         } while (!"6".equals(this.input.ask("Exit?(6): ")));
     }
 
