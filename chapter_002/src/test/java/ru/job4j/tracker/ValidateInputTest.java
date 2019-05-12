@@ -25,7 +25,7 @@ public class ValidateInputTest {
     }
 
     @Test
-    public void whenInvalidInput() {
+    public void whenInvalidInputBecauseNoNumbers() {
         ValidateInput input = new ValidateInput(
                 new StubInput(new String[] {"invalid", "1"})
         );
@@ -33,7 +33,20 @@ public class ValidateInputTest {
         assertThat(
                 this.mem.toString(),
                 is(
-                        String.format("Please enter validate data again.%n")
+                        String.format("Error: For input string: \"invalid\" Please enter validate data again. %n")
+                )
+        );
+    }
+    @Test
+    public void whenInvalidInputBecauseNumbersOutOfRange() {
+        ValidateInput input = new ValidateInput(
+                new StubInput(new String[] {"986456", "1"})
+        );
+        input.ask("Enter", new int[] {1});
+        assertThat(
+                this.mem.toString(),
+                is(
+                        String.format("Error: Out of menu range Please select key from menu. %n")
                 )
         );
     }
