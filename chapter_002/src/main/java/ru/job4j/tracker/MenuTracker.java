@@ -20,12 +20,12 @@ public class MenuTracker {
     }
 
     public void fillActions() {
-        this.actions.add(new AddItem());
-        this.actions.add(new ShowItems());
-        this.actions.add(new UpdateItem());
-        this.actions.add(new DeleteItem());
-        this.actions.add(new FindItemById());
-        this.actions.add(new FindItemsByName());
+        this.actions.add(new AddItem(0, "Add new Item."));
+        this.actions.add(new ShowItems(1, "Show Items."));
+        this.actions.add(new UpdateItem(2, "Update Item."));
+        this.actions.add(new DeleteItem(3, "Delete Item."));
+        this.actions.add(new FindItemById(4, "Find Item by ID."));
+        this.actions.add(new FindItemsByName(5, "Find Item by name."));
     }
 
     public void select(int key) {
