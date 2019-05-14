@@ -5,6 +5,14 @@ import java.util.Arrays;
 import java.util.Random;
 
 public class TrackerSingle3 {
+    private static final TrackerSingle3 INSTANCE = new TrackerSingle3();
+
+    private TrackerSingle3() {
+    }
+
+    public static TrackerSingle3 getInstance() {
+        return INSTANCE;
+    }
 
     private Item[] items = new Item[100];
     private static final Random RN = new Random();
