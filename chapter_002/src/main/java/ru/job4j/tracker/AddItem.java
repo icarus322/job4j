@@ -1,8 +1,7 @@
 package ru.job4j.tracker;
 
 public class AddItem extends BaseAction {
-    private int key = 0;
-    private String name = "Add new Item.";
+
     public AddItem(int key, String name) {
         super(key, name);
     }
