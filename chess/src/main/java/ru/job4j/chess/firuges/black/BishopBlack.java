@@ -24,20 +24,9 @@ public class BishopBlack implements Figure {
     @Override
     public Cell[] way(Cell source, Cell dest) {
         Cell[] steps = new Cell[0];
-        for (int i = 0; i < 8; i++) {
-            if (source.y == dest.y - i && source.x == dest.x - i) {
+        if (Math.abs(source.y - dest.y) == Math.abs(source.x - dest.x)) {
                 steps = new Cell[] { dest };
             }
-            if (source.y == dest.y + i && source.x == dest.x + i) {
-                steps = new Cell[] { dest };
-            }
-            if (source.y == dest.y - i && source.x == dest.x + i) {
-                steps = new Cell[] { dest };
-            }
-            if (source.y == dest.y + i && source.x == dest.x - i) {
-                steps = new Cell[] { dest };
-            }
-        }
         return steps;
     }
 
