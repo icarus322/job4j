@@ -28,6 +28,7 @@ public class Logic {
                     } else if (i == 31){
                         rst = true;
                         this.figures[index] = this.figures[index].copy(dest);
+                        System.out.println(dest);
                     }
                 }
             }
