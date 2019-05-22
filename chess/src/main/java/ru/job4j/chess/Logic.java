@@ -20,7 +20,7 @@ public class Logic {
         int index = this.findBy(source);
         if (index != -1) {
             Cell[] steps = this.figures[index].way(source, dest);
-            if (steps.length > 0 && steps[steps.length - 1].equals(dest)) {
+            if (steps.length > 0 && steps[steps.length - 1].equals(dest) && moveTest(source,dest)) {
                 for (int i = 0; i < 32; i++) {
                     if (dest.equals(figures[i].position())) {
                         rst = false;
@@ -34,6 +34,93 @@ public class Logic {
             }
         }
         return rst;
+    }
+    public boolean moveTest(Cell source, Cell dest) {
+        boolean rst = false;
+        int index = this.findBy(source);
+        if (index != -1) {
+            Cell[] tmp = path(source, dest);
+            for (int i = 0; i < tmp.length; i++) {
+                System.out.println(tmp[i]);
+                if (tmp.length > 0 && tmp[tmp.length - 1].equals(dest)) {
+                    for (int j = 0; j < 32; j++) {
+                        if (tmp[i].equals(figures[j].position())) {
+                            rst = false;
+                            i = tmp.length;
+                            break;
+                        } else if (j == 31) {
+                            rst = true;
+                        }
+                    }
+                }
+            }
+        }
+        return rst;
+    }
+
+    public Cell[] path(Cell source, Cell dest) {
+        Cell[] result = new Cell[0];
+        int deltaX = Math.abs(source.x - dest.x);
+        int deltaY = Math.abs(source.y - dest.y);
+        if(source.x < dest.x && source.y < dest.y) {
+            Cell[] tmp = new Cell[deltaX + 1];
+            for (int i = 0; i <= deltaX; i++) {
+                tmp[i] = Cell.findByXY(source.x + i, source.y + i);
+            }
+            result = tmp;
+        }
+        if(source.x > dest.x && source.y < dest.y) {
+            Cell[] tmp = new Cell[deltaX + 1];
+            for (int i = 0; i <= deltaX; i++) {
+                tmp[i] = Cell.findByXY(source.x - i, source.y + i);
+            }
+            result = tmp;
+        }
+        if(source.x < dest.x && source.y > dest.y) {
+            Cell[] tmp = new Cell[deltaX + 1];
+            for (int i = 0; i <= deltaX; i++) {
+                tmp[i] = Cell.findByXY(source.x + i, source.y - i);
+            }
+            result = tmp;
+        }
+        if(source.x > dest.x && source.y > dest.y) {
+            Cell[] tmp = new Cell[deltaX + 1];
+            for (int i = 0; i <= deltaX; i++) {
+                tmp[i] = Cell.findByXY(source.x - i, source.y - i);
+            }
+            result = tmp;
+        }
+        if(source.x > dest.x && source.y == dest.y) {
+            Cell[] tmp = new Cell[deltaX + 1];
+            for (int i = 0; i <= deltaX; i++) {
+                tmp[i] = Cell.findByXY(source.x - i, source.y);
+            }
+            result = tmp;
+        }
+        if(source.x < dest.x && source.y == dest.y) {
+            Cell[] tmp = new Cell[deltaX + 1];
+            for (int i = 0; i <= deltaX; i++) {
+                tmp[i] = Cell.findByXY(source.x + i, source.y);
+            }
+            result = tmp;
+        }
+        if(source.x == dest.x && source.y > dest.y) {
+            Cell[] tmp = new Cell[deltaX + 1];
+            for (int i = 0; i <= deltaX; i++) {
+                tmp[i] = Cell.findByXY(source.x, source.y - 1);
+            }
+            result = tmp;
+        }
+        if(source.x == dest.x && source.y < dest.y) {
+            Cell[] tmp = new Cell[deltaX + 1];
+            for (int i = 0; i <= deltaX; i++) {
+                tmp[i] = Cell.findByXY(source.x, source.y + 1);
+            }
+            result = tmp;
+        }
+
+
+        return result;
     }
 
     public void clean() {
