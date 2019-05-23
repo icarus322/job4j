@@ -20,7 +20,7 @@ public class Logic {
         int index = this.findBy(source);
         if (index != -1) {
             Cell[] steps = this.figures[index].way(source, dest);
-            if (steps.length > 0 && steps[steps.length - 1].equals(dest) && moveTest(source,dest)) {
+            if (steps.length > 0 && moveTest(source,dest)) {
                 for (int i = 0; i < 32; i++) {
                     if (dest.equals(figures[i].position())) {
                         rst = false;
@@ -28,7 +28,6 @@ public class Logic {
                     } else if (i == 31){
                         rst = true;
                         this.figures[index] = this.figures[index].copy(dest);
-                        System.out.println(dest);
                     }
                 }
             }
@@ -40,9 +39,10 @@ public class Logic {
         int index = this.findBy(source);
         if (index != -1) {
             Cell[] tmp = path(source, dest);
+            System.out.println(tmp.length);
             for (int i = 0; i < tmp.length; i++) {
-                System.out.println(tmp[i]);
-                if (tmp.length > 0 && tmp[tmp.length - 1].equals(dest)) {
+                System.out.println(tmp[i] + " move test");
+                if (tmp.length > 0) {
                     for (int j = 0; j < 32; j++) {
                         if (tmp[i].equals(figures[j].position())) {
                             rst = false;
@@ -87,6 +87,7 @@ public class Logic {
             Cell[] tmp = new Cell[deltaX + 1];
             for (int i = 0; i <= deltaX; i++) {
                 tmp[i] = Cell.findByXY(source.x - i, source.y - i);
+                System.out.println(tmp[i] + " path");
             }
             result = tmp;
         }
@@ -94,6 +95,7 @@ public class Logic {
             Cell[] tmp = new Cell[deltaX + 1];
             for (int i = 0; i <= deltaX; i++) {
                 tmp[i] = Cell.findByXY(source.x - i, source.y);
+                System.out.println(tmp[i] + " path y--");
             }
             result = tmp;
         }
@@ -101,20 +103,23 @@ public class Logic {
             Cell[] tmp = new Cell[deltaX + 1];
             for (int i = 0; i <= deltaX; i++) {
                 tmp[i] = Cell.findByXY(source.x + i, source.y);
+                System.out.println(tmp[i] + " path x++");
             }
             result = tmp;
         }
         if(source.x == dest.x && source.y > dest.y) {
-            Cell[] tmp = new Cell[deltaX + 1];
-            for (int i = 0; i <= deltaX; i++) {
+            Cell[] tmp = new Cell[deltaY + 1];
+            for (int i = 0; i <= deltaY; i++) {
                 tmp[i] = Cell.findByXY(source.x, source.y - 1);
+                System.out.println(tmp[i] + " path y-- "+ " deltaY=" + deltaY + " i=" + i);
             }
             result = tmp;
         }
         if(source.x == dest.x && source.y < dest.y) {
-            Cell[] tmp = new Cell[deltaX + 1];
-            for (int i = 0; i <= deltaX; i++) {
+            Cell[] tmp = new Cell[deltaY + 1];
+            for (int i = 0; i <= deltaY; i++) {
                 tmp[i] = Cell.findByXY(source.x, source.y + 1);
+                System.out.println(tmp[i] + " path y++");
             }
             result = tmp;
         }
