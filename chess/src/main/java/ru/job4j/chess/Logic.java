@@ -39,22 +39,20 @@ public class Logic {
         int index = this.findBy(source);
         if (index != -1) {
             Cell[] tmp = path(source, dest);
-            System.out.println(tmp.length);
-            for (int i = 0; i < tmp.length; i++) {
+            for (int i = 1; i < tmp.length; i++) {
                 System.out.println(tmp[i] + " move test");
-                if (tmp.length > 0) {
-                    for (int j = 0; j < 32; j++) {
-                        if (tmp[i].equals(figures[j].position())) {
-                            rst = false;
-                            i = tmp.length;
-                            break;
-                        } else if (j == 31) {
-                            rst = true;
-                        }
+                for (int j = 0; j < 32; j++) {
+                    if (tmp[i].equals(figures[j].position())) {
+                        rst = false;
+                        i = tmp.length;
+                        break;
+                    } else if (j == 31) {
+                        rst = true;
                     }
                 }
             }
         }
+        System.out.println(rst + " moveTest");
         return rst;
     }
 
@@ -95,7 +93,7 @@ public class Logic {
             Cell[] tmp = new Cell[deltaX + 1];
             for (int i = 0; i <= deltaX; i++) {
                 tmp[i] = Cell.findByXY(source.x - i, source.y);
-                System.out.println(tmp[i] + " path y--");
+                System.out.println(tmp[i] + " path x--");
             }
             result = tmp;
         }
@@ -103,22 +101,22 @@ public class Logic {
             Cell[] tmp = new Cell[deltaX + 1];
             for (int i = 0; i <= deltaX; i++) {
                 tmp[i] = Cell.findByXY(source.x + i, source.y);
-                System.out.println(tmp[i] + " path x++");
+                System.out.println(tmp[i] + " path x++" + " deltaX=" + deltaX + " i=" + i);
             }
             result = tmp;
         }
         if(source.x == dest.x && source.y > dest.y) {
             Cell[] tmp = new Cell[deltaY + 1];
             for (int i = 0; i <= deltaY; i++) {
-                tmp[i] = Cell.findByXY(source.x, source.y - 1);
-                System.out.println(tmp[i] + " path y-- "+ " deltaY=" + deltaY + " i=" + i);
+                tmp[i] = Cell.findByXY(source.x, source.y - i);
+                System.out.println(tmp[i] + " path y-- " + " deltaY=" + deltaY + " i=" + i);
             }
             result = tmp;
         }
         if(source.x == dest.x && source.y < dest.y) {
             Cell[] tmp = new Cell[deltaY + 1];
             for (int i = 0; i <= deltaY; i++) {
-                tmp[i] = Cell.findByXY(source.x, source.y + 1);
+                tmp[i] = Cell.findByXY(source.x, source.y + i);
                 System.out.println(tmp[i] + " path y++");
             }
             result = tmp;
