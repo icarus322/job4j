@@ -6,18 +6,14 @@ public class PriorityQueue {
     private LinkedList<Task> tasks = new LinkedList<>();
 
       public void put(Task task) {
-          for (int i = 0; i <= tasks.size(); i++) {
-              if (i == 0) {
-                  this.tasks.add(task);
-              }
+          int position = tasks.size();
+          for (int i = 0; i < tasks.size(); i++) {
               if (task.getPriority() < tasks.get(i).getPriority()) {
-                  this.tasks.add(i, task);
-                  break;
-              } else if (i >= tasks.size() - 1) {
-                  this.tasks.add(i, task);
+                  position = i;
                   break;
               }
           }
+          this.tasks.add(position, task);
     }
 
     public Task take() {
