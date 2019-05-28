@@ -1,6 +1,6 @@
 package ru.job4j.search;
 
-public class Task implements Comparable<Task> {
+public class Task {
     private String desc;
     private int priority;
 
@@ -9,10 +9,6 @@ public class Task implements Comparable<Task> {
         this.priority = priority;
     }
 
-    @Override
-    public int compareTo(Task task) {
-        return this.priority - task.priority;
-    }
 
     public String getDesc() {
         return desc;
