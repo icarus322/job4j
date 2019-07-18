@@ -25,35 +25,28 @@ public class BishopBlack implements Figure {
     public Cell[] way(Cell source, Cell dest) {
         Cell[] steps = new Cell[0];
         if (Math.abs(source.y - dest.y) == Math.abs(source.x - dest.x)) {
-            int deltaX = Math.abs(source.x - dest.x);
-            if(source.x < dest.x && source.y < dest.y) {
-                Cell[] tmp = new Cell[deltaX + 1];
-                for (int i = 0; i <= deltaX; i++) {
-                    tmp[i] = Cell.findByXY(source.x + i, source.y + i);
-                }
-                steps = tmp;
+            int quantityX = Math.abs(source.x - dest.x);
+            int deltaX = 0;
+            int deltaY = 0;
+
+            if (source.x > dest.x) {
+                deltaX = -1;
+            } else if (source.x < dest.x){
+                deltaX = 1;
             }
-            if(source.x > dest.x && source.y < dest.y) {
-                Cell[] tmp = new Cell[deltaX + 1];
-                for (int i = 0; i <= deltaX; i++) {
-                    tmp[i] = Cell.findByXY(source.x - i, source.y + i);
-                }
-                steps = tmp;
+            if (source.y > dest.y) {
+                deltaY = -1;
+            } else if (source.y < dest.y){
+                deltaY = 1;
             }
-            if(source.x < dest.x && source.y > dest.y) {
-                Cell[] tmp = new Cell[deltaX + 1];
-                for (int i = 0; i <= deltaX; i++) {
-                    tmp[i] = Cell.findByXY(source.x + i, source.y - i);
-                }
-                steps = tmp;
+
+            Cell[] tmp = new Cell[quantityX + 1];
+            for (int i = 1; i <= quantityX; i++) {
+                tmp[i] = Cell.findByXY(source.x + deltaX, source.y + deltaY);
+                deltaX = deltaX + deltaX;
+                deltaY = deltaY + deltaY;
             }
-            if(source.x > dest.x && source.y > dest.y) {
-                Cell[] tmp = new Cell[deltaX + 1];
-                for (int i = 0; i <= deltaX; i++) {
-                    tmp[i] = Cell.findByXY(source.x - i, source.y - i);
-                }
-                steps = tmp;
-            }
+            steps = tmp;
         }
         return steps;
     }
