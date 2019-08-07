@@ -2,6 +2,9 @@ package ru.job4j.tracker;
 
 import org.junit.Test;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertThat;
@@ -57,12 +60,11 @@ public class TrackerTest {
     @Test
     public void whenFindItemThenReturnAllButNull() {
         Tracker tracker = new Tracker();
-        Item[] items = {
-                tracker.add(new Item("first", "testDescription", 123L)),
-                tracker.add(new Item("third", "testDescription2", 1234L)),
-                tracker.add(new Item()),
-                tracker.add(new Item())
-        };
+        List<Item> items = new ArrayList<>();
+        items.add(tracker.add(new Item("first", "testDescription", 123L)));
+        items.add(tracker.add(new Item("third", "testDescription2", 1234L)));
+        items.add(tracker.add(new Item()));
+        items.add(tracker.add(new Item()));
         tracker.findAll();
         assertThat(items, is(tracker.findAll()));
     }
@@ -76,10 +78,10 @@ public class TrackerTest {
         tracker.add(second);
         Item third = new Item("first", "testDescription2", 1234L);
         tracker.add(third);
-        Item[] expected = new Item[2];
-        expected[0] = first;
-        expected[1] = third;
-        assertArrayEquals(expected, tracker.findByName("first"));
+        List<Item> expected = new ArrayList<>();
+        expected.add(first);
+        expected.add(third);
+        assertThat(expected, is(tracker.findByName("first")));
     }
 
 

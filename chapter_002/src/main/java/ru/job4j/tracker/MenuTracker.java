@@ -1,7 +1,6 @@
 package ru.job4j.tracker;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class MenuTracker {
@@ -11,8 +10,6 @@ public class MenuTracker {
     private Tracker tracker;
 
     private List<UserAction> actions = new ArrayList<>();
-
-    private int[] test = new int[6];
 
     public MenuTracker(Input input, Tracker tracker) {
         this.input = input;

@@ -1,24 +1,21 @@
 package ru.job4j.tracker;
 
-//import com.sun.tools.javac.jvm.Items;
 
-import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 public class Tracker {
 
-    private Item[] items = new Item[100];
+    private List<Item> items = new ArrayList<>();
     private static final Random RN = new Random();
 
     private int position = 0;
 
-    /**
-     * Метод реализаущий добавление заявки в хранилище
-     * @param item новая заявка
-     */
     public Item add(Item item) {
         item.setId(this.generateId());
-        this.items[this.position++] = item;
+        this.items.add(item);
+        this.position++;
         return item;
     }
 
@@ -41,8 +38,8 @@ public class Tracker {
         boolean result = false;
         item.setId(id);
         for (int i = 0; i < this.position; i++) {
-            if (this.items[i].getId().equals(id)) {
-                this.items[i] = item;
+            if (this.items.get(i).getId().equals(id)) {
+                this.items.set(i, item);
                 result = true;
                 break;
             }
@@ -53,9 +50,9 @@ public class Tracker {
     public boolean delete(String id) {
         boolean result = false;
         for (int i = 0; i < this.position; i++) {
-            if (this.items[i].getId().equals(id)) {
-                System.arraycopy(this.items, i + 1, this.items, i, position - 1 - i);
-                items[--position] = null;
+            if (this.items.get(i).getId().equals(id)) {
+                this.items.remove(i);
+                position--;
                 result = true;
                 break;
             }
@@ -63,26 +60,25 @@ public class Tracker {
         return result;
     }
 
-    public Item[] findAll() {
-        return Arrays.copyOf(this.items, this.position);
+    public List<Item> findAll() {
+        return this.items;
     }
 
-    public Item[] findByName(String key) {
-        int number = 0;
-        Item[] temp = new Item[this.position];
-        for (int i = 0; i < this.position; i++) {
-            if (this.items[i].getName().equals(key)) {
-                temp[number++] = this.items[i];
+    public List<Item> findByName(String key) {
+        List<Item> temp = new ArrayList<>();
+        for (Item item : this.items) {
+            if (item.getName().equals(key)) {
+                temp.add(item);
             }
         }
-        return Arrays.copyOf(temp, number);
+        return temp;
     }
 
     public int getPosition() {
         return this.position;
     }
 
-    public Item[] getItems() {
+    public List<Item> getItems() {
         return this.items;
     }
 }
