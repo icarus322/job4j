@@ -12,9 +12,9 @@ public class ListCompare implements Comparator<String> {
             if (result != 0) {
                 break;
             }
-            if (i == minLength - 1) {
-                result = left.length() - right.length();
-            }
+        }
+        if (result == 0) {
+            result = left.length() - right.length();
         }
         return result;
     }
