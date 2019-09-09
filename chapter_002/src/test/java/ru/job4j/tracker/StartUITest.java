@@ -3,14 +3,31 @@ package ru.job4j.tracker;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
+import java.util.function.Consumer;
+
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 
 public class StartUITest {
-    private final PrintStream stdout = System.out;
-    private final ByteArrayOutputStream out = new ByteArrayOutputStream();
+    private final PrintStream out = System.out;
+    private ByteArrayOutputStream bas = new ByteArrayOutputStream();
+    private final Consumer<String> output = new Consumer<String>() {
+        private final PrintStream stdout = new PrintStream(bas);
+
+        @Override
+        public void accept(String s) {
+            stdout.println(s);
+        }
+
+        @Override
+        public String toString() {
+            return bas.toString();
+        }
+    };
+
     private static final String SB = new StringBuilder()
             .append("0. Add new Item.")
             .append(System.lineSeparator())
@@ -34,38 +51,33 @@ public class StartUITest {
 
     @After
     public void backOutput() {
-        System.setOut(this.stdout);
+        System.setOut(this.out);
         System.out.println("execute after method");
     }
 
     @Test
     public void whenUserTryToShowAllItemsThenTrackerHasShowAllItems() {
         Tracker tracker = new Tracker();
-        Input input = new StubInput(new String[]{"1", "6"});
-        new StartUI(input, tracker).init();
-        assertThat(
-                new String(out.toByteArray()),
-                is(SB
-                        +
-                        new StringBuilder()
-                                .append("------------ Список заявок --------------")
-                                .append(System.lineSeparator())
-                                .append("Номер")
-                                .append(System.lineSeparator())
-                                .append("------------ Конец списка заявок --------------")
-                                .append(System.lineSeparator())
-                                .toString()
-                )
+        new StartUI(new StubInput(new String[]{"1", "6"}), tracker, output).init();
+        String expect = (SB
+                +
+                new StringBuilder()
+                        .append("------------ Список заявок --------------")
+                        .append(System.lineSeparator())
+                        .append("Номер")
+                        .append(System.lineSeparator())
+                        .append("------------ Конец списка заявок --------------")
+                        .append(System.lineSeparator())
+                        .toString()
         );
+        assertThat(this.output.toString(), is(expect));
     }
 
     @Test
     public void whenUserTryToFindItemByIdThenTrackerHasShowAllItemsWithThisId() {
         Tracker tracker = new Tracker();
-        Input input = new StubInput(new String[]{"4", "test", "6"});
-        new StartUI(input, tracker).init();
-        assertThat(
-                new String(out.toByteArray()),
+        new StartUI(new StubInput(new String[]{"4", "test", "6"}), tracker, output).init();
+        assertThat(this.output.toString(),
                 is(SB
                         +
                         new StringBuilder()
@@ -79,10 +91,8 @@ public class StartUITest {
     @Test
     public void whenUserTryToFindItemByNameThenTrackerHasShowAllItemsWithThisName() {
         Tracker tracker = new Tracker();
-        Input input = new StubInput(new String[]{"5", "test", "6"});
-        new StartUI(input, tracker).init();
-        assertThat(
-                new String(out.toByteArray()),
+        new StartUI(new StubInput(new String[]{"5", "test", "6"}), tracker, output).init();
+        assertThat(this.output.toString(),
                 is(SB
                         +
                         new StringBuilder()
