@@ -23,4 +23,21 @@ public class ProfilesTest {
         expect.add(new Address("city3", "street3", 3, 33));
         assertThat(result, is(expect));
     }
+
+    @Test
+    public void WhenSortingProfilesThenSorted() {
+        Profiles profiles = new Profiles();
+        List<Profile> test = new ArrayList<>();
+        test.add(new Profile(new Address("city1", "street1", 99, 123)));
+        test.add(new Profile(new Address("city3", "street54", 15, 92)));
+        test.add(new Profile(new Address("city2", "street3454", 78, 83)));
+        List<Address> result = profiles.sorting(test);
+        List<Address> expect = new ArrayList<>();
+        expect.add(new Address("city1", "street1", 99, 123));
+        expect.add(new Address("city2", "street3454", 78, 83));
+        expect.add(new Address("city3", "street54", 15, 92));
+        assertThat(result, is(expect));
+    }
+
+
 }

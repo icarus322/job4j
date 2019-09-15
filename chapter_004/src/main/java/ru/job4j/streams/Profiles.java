@@ -11,4 +11,12 @@ public class Profiles {
                 .map(Profile::getAddress)
                 .collect(Collectors.toList());
     }
+
+    public List<Address> sorting(List<Profile> profiles) {
+        List<Address> result = collect(profiles).stream().distinct().collect(Collectors.toList());
+        result = result.stream()
+                .sorted(Address::compareTo)
+                .collect(Collectors.toList());
+        return result;
+    }
 }
