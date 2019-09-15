@@ -1,15 +1,20 @@
 package ru.job4j.streams;
 
 import java.util.List;
+import java.util.Map;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 public class School {
 
     public List<Student> collect(List<Student> students, Predicate<Student> predicate) {
-        List<Student> result = students.stream().filter(
+        return students.stream().filter(
                 predicate
         ).collect(Collectors.toList());
-        return result;
+    }
+
+    public Map<String, Integer> mapping(List<Student> students) {
+        return students.stream()
+                .collect(Collectors.toMap(Student::getName, Student::getScore));
     }
 }

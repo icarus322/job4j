@@ -5,8 +5,9 @@ import java.util.Objects;
 public class Student {
 
     private int score;
+    private String name;
 
-    public Student(int score) {
+    public Student(int score, String name) {
         if (score > 100) {
             score = 100;
         }
@@ -14,16 +15,22 @@ public class Student {
             score = 0;
         }
         this.score = score;
+        this.name = name;
     }
 
     public int getScore() {
         return score;
     }
 
+    public String getName() {
+        return name;
+    }
+
     @Override
     public String toString() {
         return "Student{" +
                 "score=" + score +
+                ", name='" + name + '\'' +
                 '}';
     }
 
@@ -32,11 +39,12 @@ public class Student {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Student student = (Student) o;
-        return score == student.score;
+        return score == student.score &&
+                Objects.equals(name, student.name);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(score);
+        return Objects.hash(score, name);
     }
 }
