@@ -5,16 +5,16 @@ import java.util.*;
 
 public class Sorting {
 
-    Set <User> users = new HashSet<>();
+    private List<Organization> departments = new ArrayList<>();
 
-    public void addUser(User user) {
-        users.add(user);
+    public void addDepartment(Organization department) {
+        departments.add(department);
     }
 
 
-    public List<User> sortUsersFromA() {
-        List<User> list = new ArrayList<>(users);
-        Comparator<User> comparator = (o1, o2) -> {
+  
+    public List<Organization> sortOrgsFromA() {
+        Comparator<Organization> comparator = (o1, o2) -> {
             int result;
             if (o1 == null) {
                 result = -1;
@@ -22,21 +22,22 @@ public class Sorting {
             else if (o2 == null) {
                 result = 1;
             }
-            else if (o1.getFirstName().equals(o2.getFirstName())) {
-                result = (o1.getSecondName().compareTo(o2.getSecondName()));
+            else if (o1.getDepartment().equals(o2.getDepartment())) {
+                result = 0;
             }
             else {
-                result = o1.getFirstName().compareTo(o2.getFirstName());
+                result = o1.getDepartment().compareTo(o2.getDepartment());
                            }
             return result;
         };
-        list.sort(comparator);
-        System.out.println(list);
-        return list;
+        departments.sort(comparator);
+        System.out.println(departments);
+        return departments;
     }
-    public List<User> sortUsersFromZ() {
-        List<User> list = new ArrayList<>(users);
-        Comparator<User> comparator = (o1, o2) -> {
+
+
+    public List<Organization> sortOrgsFromZ() {
+        Comparator<Organization> comparator = (o1, o2) -> {
             int result;
             if (o1 == null) {
                 result = -1;
@@ -44,25 +45,17 @@ public class Sorting {
             else if (o2 == null) {
                 result = 1;
             }
-            else if (o1.getFirstName().equals(o2.getFirstName())) {
-                result = (o1.getSecondName().compareTo(o2.getSecondName()));
+            else if (o1.getDepartment().equals(o2.getDepartment())) {
+                result = 0;
             }
             else {
-
-                result = (o1.getFirstName().compareTo(o2.getFirstName())) * - 1;
+                result = o1.getDepartment().substring(0, 2).compareTo(o2.getDepartment().substring(0, 2)) * -1;
             }
-
             return result;
         };
-        list.sort(comparator);
-        System.out.println(list);
-        return list;
+        departments.sort(comparator);
+        System.out.println(departments);
+        return departments;
     }
 
-    @Override
-    public String toString() {
-        return "Sorting{" +
-                "users=" + users +
-                '}';
-    }
 }

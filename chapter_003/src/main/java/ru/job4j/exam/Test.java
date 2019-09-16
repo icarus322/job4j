@@ -3,17 +3,23 @@ package ru.job4j.exam;
 public class Test {
     public void start() {
         Sorting sorting = new Sorting();
-        sorting.addUser(new User("Tom", "Hall"));
-        sorting.addUser(new User("Fred", "Brown"));
-        sorting.addUser(new User("Alex", "Wilson"));
-        sorting.addUser(new User("Tom", "Brown"));
-        sorting.addUser(new User("Alex", "Hall"));
-        sorting.sortUsersFromA();
-        sorting.sortUsersFromZ();
+        sorting.addDepartment(new Organization("K2"));
+        sorting.addDepartment(new Organization("K1\\SK1\\SSK2"));
+        sorting.addDepartment(new Organization("K1\\SK1"));
+        sorting.addDepartment(new Organization("K1\\SK2"));
+        sorting.addDepartment(new Organization("K1"));
+        sorting.addDepartment(new Organization("K1\\SK1\\SSK1"));
+        sorting.addDepartment(new Organization("K2\\SK1\\SSK1"));
+        sorting.addDepartment(new Organization("K2\\SK1\\SSK2"));
+        sorting.addDepartment(new Organization("K2\\SK1"));
+
+        sorting.sortOrgsFromA();
+        sorting.sortOrgsFromZ();
     }
 
     public static void main(String[] args) {
         Test test = new Test();
         test.start();
     }
+
 }
