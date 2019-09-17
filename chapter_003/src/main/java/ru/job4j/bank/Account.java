@@ -15,7 +15,6 @@ public class Account {
         this.requisites = requisites;
     }
 
-
     public double getValue() {
         return value;
     }

@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collector;
+
 
 public class Bank {
 
@@ -18,34 +20,31 @@ public class Bank {
     }
 
     public void addAccountToUser(String passport, Account account) {
-        for (Map.Entry<User, List<Account>> userListEntry : accounts.entrySet()) {
-            if (userListEntry.getKey().getPassport().equals(passport)) {
-                List<Account> accounts = userListEntry.getValue();
-                if (!accounts.contains(account)) {
-                    accounts.add(account);
-                }
-            }
-        }
+        accounts.keySet()
+                .stream()
+                .filter(user -> user.getPassport().equals(passport))
+                .findFirst()
+                .map(user -> accounts.get(user))
+                .ifPresent(a -> a.add(account));
     }
 
     public void deleteAccountFromUser(String passport, Account account) {
-        for (Map.Entry<User, List<Account>> userListEntry : accounts.entrySet()) {
-            if (userListEntry.getKey().getPassport().equals(passport)) {
-                List<Account> accounts = userListEntry.getValue();
-                accounts.remove(account);
-                userListEntry.setValue(accounts);
-            }
-        }
+        accounts.keySet()
+                .stream()
+                .filter(user -> user.getPassport().equals(passport))
+                .findFirst()
+                .map(user -> accounts.get(user))
+                .ifPresent(a -> a.remove(account));
 
     }
+
     public List<Account> getUserAccounts(String passport) {
-        List<Account> tmp = new ArrayList<>();
-        for (Map.Entry<User, List<Account>> userListEntry : accounts.entrySet()) {
-            if (userListEntry.getKey().getPassport().equals(passport)) {
-                tmp = userListEntry.getValue();
-            }
-        }
-        return tmp;
+        return accounts.keySet()
+                .stream()
+                .filter(user -> user.getPassport().equals(passport))
+                .map(user -> accounts.get(user))
+                .findFirst()
+                .get();
     }
 
     public boolean transferMoney(String srcPassport, String srcRequisite, String destPassport, String destRequisite, double amount) {
@@ -81,5 +80,16 @@ public class Bank {
             }
         }
         return result;
+    }
+
+    public Account checkAccountTest(String passport, String requisite) {
+        return accounts.keySet()
+                .stream()
+                .filter(user -> user.getPassport().equals(passport))
+                .map(user -> accounts.get(user))
+                .findFirst()
+                .filter(account -> account.get(0).getRequisites().equals(requisite))
+                .forEach()
+
     }
 }
