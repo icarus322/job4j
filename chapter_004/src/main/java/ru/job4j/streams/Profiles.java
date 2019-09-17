@@ -13,10 +13,6 @@ public class Profiles {
     }
 
     public List<Address> sorting(List<Profile> profiles) {
-        List<Address> result = collect(profiles).stream().distinct().collect(Collectors.toList());
-        result = result.stream()
-                .sorted(Address::compareTo)
-                .collect(Collectors.toList());
-        return result;
+        return collect(profiles).stream().sorted(Address::compareTo).distinct().collect(Collectors.toList());
     }
 }
