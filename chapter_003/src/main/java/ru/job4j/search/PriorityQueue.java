@@ -6,8 +6,8 @@ public class PriorityQueue {
     private LinkedList<Task> tasks = new LinkedList<>();
 
       public void put(Task task) {
-          int position = tasks.size();
-          for (int i = 0; i < tasks.size(); i++) {
+          var position = tasks.size();
+          for (var i = 0; i < tasks.size(); i++) {
               if (task.getPriority() < tasks.get(i).getPriority()) {
                   position = i;
                   break;
