@@ -1,23 +1,24 @@
 package ru.job4j.exam;
 
 
+import java.util.List;
 import java.util.Objects;
 
-public class Organization {
+public class Organization implements Comparable<Organization> {
 
-    private String department;
+    private List<String> department;
 
-    public String getDepartment() {
+    public List<String> getDepartment() {
         return department;
     }
 
-    public Organization(String department) {
+    public Organization(List<String> department) {
         this.department = department;
     }
 
     @Override
     public String toString() {
-        return department;
+        return String.join("/", department);
     }
 
     @Override
@@ -31,5 +32,10 @@ public class Organization {
     @Override
     public int hashCode() {
         return Objects.hash(department);
+    }
+
+    @Override
+    public int compareTo(Organization o) {
+        return this.department.get(0).length() - o.getDepartment().get(0).length();
     }
 }
