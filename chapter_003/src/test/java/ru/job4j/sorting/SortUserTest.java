@@ -13,10 +13,15 @@ import static org.junit.Assert.assertThat;
 public class SortUserTest {
     @Test
     public void whenSortUsersByAge() {
-        List<User> users = new ArrayList<>();
-        users.add(new User(15, "Tom"));
-        users.add(new User(8, "Keil"));
-        users.add(new User(58, "Rim"));
+        List<User> users = List.of(
+                new User(15, "Tom"),
+                new User(8, "Keil"),
+                new User(58, "Rim")
+        );
+//        List<User> users = new ArrayList<>();
+//        users.add(new User(15, "Rim"));
+//        users.add(new User(8, "Keil"));
+//        users.add(new User(58, "Tom"));
         SortUser sortUser = new SortUser();
         Set<User> result = sortUser.sort(users);
         Set<User> check = new TreeSet<>();
