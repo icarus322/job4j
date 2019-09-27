@@ -1,11 +1,16 @@
 package ru.job4j.streams;
 
+import java.util.Comparator;
 import java.util.Objects;
 
-public class Student {
+public class Student implements Comparator<Student> {
 
     private int score;
     private String name;
+
+    public Student() {
+
+    }
 
     public Student(int score, String name) {
         if (score > 100) {
@@ -32,6 +37,11 @@ public class Student {
                 "score=" + score +
                 ", name='" + name + '\'' +
                 '}';
+    }
+
+    @Override
+    public int compare(Student o1, Student o2) {
+        return o1.getScore() - o2.getScore();
     }
 
     @Override
