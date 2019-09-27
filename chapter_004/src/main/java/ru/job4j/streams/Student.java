@@ -1,9 +1,9 @@
 package ru.job4j.streams;
 
-import java.util.Comparator;
+
 import java.util.Objects;
 
-public class Student implements Comparator<Student> {
+public class Student implements Comparable<Student> {
 
     private int score;
     private String name;
@@ -39,10 +39,7 @@ public class Student implements Comparator<Student> {
                 '}';
     }
 
-    @Override
-    public int compare(Student o1, Student o2) {
-        return o1.getScore() - o2.getScore();
-    }
+
 
     @Override
     public boolean equals(Object o) {
@@ -56,5 +53,10 @@ public class Student implements Comparator<Student> {
     @Override
     public int hashCode() {
         return Objects.hash(score, name);
+    }
+
+    @Override
+    public int compareTo(Student o) {
+        return o.getScore() - getScore();
     }
 }
