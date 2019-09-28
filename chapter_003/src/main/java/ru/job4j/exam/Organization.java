@@ -36,6 +36,44 @@ public class Organization implements Comparable<Organization> {
 
     @Override
     public int compareTo(Organization o) {
-        return this.department.get(0).length() - o.getDepartment().get(0).length();
+        int result = 0;
+        if (this.department.size() == 3 || o.getDepartment().size() == 3) {
+            if (this.department.size() > o.getDepartment().size()) {
+                result = 4;
+            }
+            if (this.department.size() < o.getDepartment().size()) {
+                result = -4;
+            }
+            if (this.department.size() == o.getDepartment().size()) {
+                result = this.department.get(1).compareTo(o.getDepartment().get(1)) * 2;
+            }
+        }
+
+        if (this.department.size() == 2 || o.getDepartment().size() == 2) {
+            if (this.department.size() > o.getDepartment().size()) {
+                result = 10;
+            }
+            if (this.department.size() < o.getDepartment().size()) {
+                result = -10;
+            }
+            if (this.department.size() == o.getDepartment().size()) {
+                result = this.department.get(0).compareTo(o.getDepartment().get(0)) * 5;
+            }
+        }
+
+        if (this.department.size() == 1 || o.getDepartment().size() == 1) {
+            if (this.department.size() > o.getDepartment().size()) {
+                result = 20;
+            }
+            if (this.department.size() < o.getDepartment().size()) {
+                result = -20;
+            }
+            if (this.department.size() == o.getDepartment().size()) {
+                result = this.department.get(0).compareTo(o.getDepartment().get(0)) * 40;
+            }
+        }
+
+        System.out.println(this.department + " " + o.getDepartment() + " " + result);
+        return result;
     }
 }
