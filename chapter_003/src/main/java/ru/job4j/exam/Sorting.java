@@ -18,16 +18,13 @@ public class Sorting {
             int result;
             if (o1 == null) {
                 result = -1;
-            }
-            else if (o2 == null) {
+            } else if (o2 == null) {
                 result = 1;
-            }
-            else if (o1.getDepartment().toString().equals(o2.getDepartment().toString())) {
+            } else if (o1.getDepartment().toString().equals(o2.getDepartment().toString())) {
                 result = 0;
-            }
-            else {
+            } else {
                 result = o1.compareTo(o2);
-                           }
+            }
             return result;
         };
         departments.sort(comparator);

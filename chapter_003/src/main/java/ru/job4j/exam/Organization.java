@@ -23,8 +23,12 @@ public class Organization implements Comparable<Organization> {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         Organization that = (Organization) o;
         return Objects.equals(department, that.department);
     }

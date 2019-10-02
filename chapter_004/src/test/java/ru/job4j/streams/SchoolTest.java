@@ -13,7 +13,7 @@ import static org.junit.Assert.assertThat;
 public class SchoolTest {
 
     @Test
-    public void ThenScoreFrom70To100() {
+    public void thenScoreFrom70To100() {
         School school = new School();
         List<Student> students = new ArrayList<>();
         students.add(new Student(6, "Tom"));
@@ -28,7 +28,7 @@ public class SchoolTest {
     }
 
     @Test
-    public void ThenScoreFrom50To69() {
+    public void thenScoreFrom50To69() {
         School school = new School();
         List<Student> students = new ArrayList<>();
         students.add(new Student(6, "Tom"));
@@ -43,7 +43,7 @@ public class SchoolTest {
     }
 
     @Test
-    public void ThenScoreFromOneTo49() {
+    public void thenScoreFromOneTo49() {
         School school = new School();
         List<Student> students = new ArrayList<>();
         students.add(new Student(6, "Tom"));
@@ -59,7 +59,7 @@ public class SchoolTest {
     }
 
     @Test
-    public void ThenListStudentsToMap() {
+    public void thenListStudentsToMap() {
         School school = new School();
         List<Student> students = new ArrayList<>();
         students.add(new Student(50, "Alex"));

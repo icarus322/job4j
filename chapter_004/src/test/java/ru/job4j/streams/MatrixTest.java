@@ -11,7 +11,7 @@ import static org.junit.Assert.assertThat;
 public class MatrixTest {
 
     @Test
-    public void ThenIntMatrixConvertToList() {
+    public void thenIntegerMatrixConvertToList() {
         Matrix matrix = new Matrix();
         Integer[][] temp = {{1, 2}, {3, 4}};
         List<Integer> result = matrix.convert(temp);

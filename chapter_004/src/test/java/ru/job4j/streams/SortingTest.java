@@ -10,7 +10,7 @@ import static org.junit.Assert.assertThat;
 public class SortingTest {
 
     @Test
-    public void WhenScoreHigher60() {
+    public void whenScoreHigher60() {
         Sorting sorting = new Sorting();
         List<Student> temp = new ArrayList<>();
         temp.add(new Student(10, "A"));
@@ -26,7 +26,7 @@ public class SortingTest {
     }
 
     @Test
-    public void WhenScoreHigher20() {
+    public void whenScoreHigher20() {
         Sorting sorting = new Sorting();
         List<Student> temp = new ArrayList<>();
         temp.add(new Student(10, "A"));
