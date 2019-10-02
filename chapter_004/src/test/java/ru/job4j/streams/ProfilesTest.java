@@ -10,7 +10,7 @@ import static org.junit.Assert.assertThat;
 public class ProfilesTest {
 
     @Test
-    public void WhenProfilesConvertToAddress() {
+    public void whenProfilesConvertToAddress() {
         Profiles profiles = new Profiles();
         List<Profile> test = new ArrayList<>();
         test.add(new Profile(new Address("city1", "street1", 1, 11)));
@@ -25,7 +25,7 @@ public class ProfilesTest {
     }
 
     @Test
-    public void WhenSortingProfilesThenSorted() {
+    public void whenSortingProfilesThenSorted() {
         Profiles profiles = new Profiles();
         List<Profile> test = new ArrayList<>();
         test.add(new Profile(new Address("city1", "street1", 99, 123)));
