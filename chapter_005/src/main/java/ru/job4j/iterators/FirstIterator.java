@@ -15,16 +15,15 @@ public class FirstIterator implements Iterator {
         this.values = values;
     }
 
-    public int getElementCount() {
-        long temp = (Stream.of(values)
-                .flatMapToInt(Arrays::stream)
-                .count());
-        return Math.toIntExact(temp);
-    }
-
     @Override
     public boolean hasNext() {
-        return counter < getElementCount();
+        boolean result = true;
+        if(indexOut == this.values.length - 1) {
+            if (indexIn != this.values[indexOut].length - 1){
+                result = false;
+            }
+        }
+        return result;
     }
 
     @Override
