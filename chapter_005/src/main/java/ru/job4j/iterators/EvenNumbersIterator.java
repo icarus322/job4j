@@ -32,11 +32,14 @@ public class EvenNumbersIterator implements Iterator {
 
     @Override
     public Object next() {
-        int result;
+        Integer result = null;
         if (checkEven()) {
             result = this.numbers[counter++];
-        } else {
-           throw new NoSuchElementException();
+        }
+        try {
+            int temp = result;
+        } catch (NullPointerException e) {
+            throw new NoSuchElementException();
         }
         return result;
     }
