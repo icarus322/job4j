@@ -10,7 +10,7 @@ public class Converter {
         return new Iterator<Integer>() {
             Iterator<Integer> iterator = it.next();
             public boolean checkNext() {
-                if (!iterator.hasNext() && it.hasNext()) {
+                while (!iterator.hasNext() && it.hasNext()) {
                     iterator = it.next();
                 }
                 return iterator.hasNext();
@@ -24,13 +24,10 @@ public class Converter {
 
             @Override
             public Integer next() {
-                int result;
-                if (checkNext()) {
-                    result = iterator.next();
-                } else {
+                if (!checkNext()) {
                     throw new NoSuchElementException();
                 }
-                return result;
+                return iterator.next();
             }
         };
     }
