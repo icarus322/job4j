@@ -18,48 +18,44 @@ public class SimpleArray<T> implements Iterable<T> {
     }
 
     public void add(T model) {
-        try {
-            this.array[addCounter++] = model;
-        } catch (ArrayIndexOutOfBoundsException e) {
-            throw new RuntimeException(e);
+        if (addCounter >= array.length) {
+            throw new ArrayIndexOutOfBoundsException();
         }
+        this.array[addCounter++] = model;
     }
 
     public void set(int index, T model) {
-        try {
-            this.array[index] = model;
-        } catch (ArrayIndexOutOfBoundsException e) {
-            throw new RuntimeException(e);
+        if (index >= array.length) {
+            throw new ArrayIndexOutOfBoundsException();
         }
+        this.array[index] = model;
     }
 
     public T get(int index) {
-        try {
-            return this.array[index];
-        } catch (ArrayIndexOutOfBoundsException e) {
-            throw new RuntimeException(e);
+        if (index >= array.length) {
+            throw new ArrayIndexOutOfBoundsException();
         }
+        return this.array[index];
     }
 
     public void remove(int index) {
-        try {
-            this.array[index] = null;
-            for (int i = 0; i < this.array.length - 1; i++) {
-                if (this.array[i] == null && this.array[i + 1] != null) {
-                    var tmp = this.array[i];
-                    this.array[i] = this.array[i + 1];
-                    this.array[i + 1] = tmp;
-                }
-            }
-            addCounter--;
-        } catch (ArrayIndexOutOfBoundsException e) {
-            throw new RuntimeException(e);
+        if (index >= array.length) {
+            throw new ArrayIndexOutOfBoundsException();
         }
+        this.array[index] = null;
+        for (int i = 0; i < this.array.length - 1; i++) {
+            if (this.array[i] == null && this.array[i + 1] != null) {
+                var tmp = this.array[i];
+                this.array[i] = this.array[i + 1];
+                this.array[i + 1] = tmp;
+            }
+        }
+
     }
 
     @Override
     public Iterator<T> iterator() {
-        return new Iterator<>(){
+        return new Iterator<>() {
 
             @Override
             public boolean hasNext() {
