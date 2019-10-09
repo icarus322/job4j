@@ -7,7 +7,6 @@ public class SimpleArray<T> implements Iterable<T> {
 
     private T[] array;
     private int addCounter = 0;
-    private int nextCounter = 0;
 
     public SimpleArray(T[] models) {
         array = models;
@@ -25,21 +24,21 @@ public class SimpleArray<T> implements Iterable<T> {
     }
 
     public void set(int index, T model) {
-        if (index >= array.length) {
+        if (index >= addCounter) {
             throw new ArrayIndexOutOfBoundsException();
         }
         this.array[index] = model;
     }
 
     public T get(int index) {
-        if (index >= array.length) {
+        if (index >= addCounter) {
             throw new ArrayIndexOutOfBoundsException();
         }
         return this.array[index];
     }
 
     public void remove(int index) {
-        if (index >= array.length) {
+        if (index >= addCounter) {
             throw new ArrayIndexOutOfBoundsException();
         }
         this.array[index] = null;
@@ -50,12 +49,14 @@ public class SimpleArray<T> implements Iterable<T> {
                 this.array[i + 1] = tmp;
             }
         }
+        addCounter--;
 
     }
 
     @Override
     public Iterator<T> iterator() {
         return new Iterator<>() {
+            private int nextCounter = 0;
 
             @Override
             public boolean hasNext() {
@@ -64,11 +65,10 @@ public class SimpleArray<T> implements Iterable<T> {
 
             @Override
             public T next() {
-                if (nextCounter >= addCounter) {
+                if (!hasNext()) {
                     throw new NoSuchElementException();
                 }
                 return get(nextCounter++);
-
             }
         };
     }
