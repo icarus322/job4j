@@ -1,5 +1,6 @@
 package ru.job4j.generic;
 
+import java.util.Arrays;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
@@ -65,5 +66,25 @@ public class SimpleArray<T> implements Iterable<T> {
                 return get(nextCounter++);
             }
         };
+    }
+
+    @Override
+    public String toString() {
+        return "SimpleArray{" +
+                "array=" + Arrays.toString(array) +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        SimpleArray<?> that = (SimpleArray<?>) o;
+        return Arrays.equals(array, that.array);
+    }
+
+    @Override
+    public int hashCode() {
+        return Arrays.hashCode(array);
     }
 }
