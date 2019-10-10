@@ -41,14 +41,8 @@ public class SimpleArray<T> implements Iterable<T> {
         if (index >= addCounter) {
             throw new ArrayIndexOutOfBoundsException();
         }
-        this.array[index] = null;
-        for (int i = 0; i < this.array.length - 1; i++) {
-            if (this.array[i] == null && this.array[i + 1] != null) {
-                var tmp = this.array[i];
-                this.array[i] = this.array[i + 1];
-                this.array[i + 1] = tmp;
-            }
-        }
+        System.arraycopy(this.array, index + 1, this.array, index, addCounter - index - 1);
+        this.array[addCounter - 1] = null;
         addCounter--;
 
     }
