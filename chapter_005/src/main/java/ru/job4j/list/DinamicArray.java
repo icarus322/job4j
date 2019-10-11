@@ -19,9 +19,13 @@ public class DinamicArray<T> implements Iterable<T> {
         return array;
     }
 
+    private void arrayGrow() {
+        this.array = Arrays.copyOf(this.array, addCounter * 2);
+    }
+
     public void add(T model) {
         if (addCounter == array.length) {
-            this.array = Arrays.copyOf(this.array, addCounter * 2);
+            arrayGrow();
         }
         this.array[addCounter++] = model;
         modCount++;
