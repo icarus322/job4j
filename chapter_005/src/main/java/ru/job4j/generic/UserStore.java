@@ -5,54 +5,34 @@ import java.util.Iterator;
 
 public class UserStore implements Store<User>{
 
-    SimpleArray<User> array;
+    AbstractStore abstr;
 
     public UserStore(User[] users) {
-        array = new SimpleArray<>(users);
+        abstr = new AbstractStore(users);;
     }
 
 
     @Override
     public void add(User model) {
-        array.add(model);
+        abstr.add(model);
     }
 
     @Override
     public boolean replace(String id, User model) {
-        array.set(findId(id), model);
-        return true;
+        return abstr.replace(id, model);
     }
 
     @Override
     public boolean delete(String id) {
-        array.remove(findId(id));
-        return true;
+        return abstr.delete(id);
     }
 
     @Override
     public User findById(String id) {
-        return array.get(findId(id));
-    }
-
-    public int findId(String id) {
-        int counter = 0;
-        int check = 0;
-        Iterator<User> it = this.array.iterator();
-        while (it.hasNext()) {
-            if (it.next().getId().equals(id)){
-                check = 1;
-                break;
-            }
-            counter++;
-        }
-        if (!it.hasNext() && check != 1) {
-            throw new ArrayIndexOutOfBoundsException("Такого индекса не существует");
-        }
-
-        return counter;
+        return (User)abstr.findById(id);
     }
 
     public SimpleArray<User> getArray() {
-        return array;
+        return abstr.getArray();
     }
 }
