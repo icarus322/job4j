@@ -31,6 +31,8 @@ public class SimpleArrayListTest {
     public void whenAddThreeElementsAndDeleteTwoElementsThenUseGetSizeResultOne() {
         list.delete();
         list.delete();
+        System.out.println(list.getFirst());
         assertThat(list.getSize(), is(1));
+
     }
 }

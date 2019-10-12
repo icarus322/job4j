@@ -12,15 +12,17 @@ public class SimpleArrayList<E> {
         this.size++;
     }
 
-
     public E delete() {
-        Node<E> result = this.first;
-        result = result.next;
+        if (this.size <= 0) {
+            throw new ArrayIndexOutOfBoundsException();
+        }
+        Node<E> result = this.first.next;
+        var temp = this.first.data;
+        this.first = null;
         this.first = result;
         this.size--;
-        return result.data;
+        return temp;
     }
-
 
     public E get(int index) {
         Node<E> result = this.first;
@@ -30,11 +32,13 @@ public class SimpleArrayList<E> {
         return result.data;
     }
 
-
     public int getSize() {
         return this.size;
     }
 
+    public Node<E> getFirst() {
+        return first;
+    }
 
     private static class Node<E> {
 
@@ -43,6 +47,14 @@ public class SimpleArrayList<E> {
 
         Node(E data) {
             this.data = data;
+        }
+
+        @Override
+        public String toString() {
+            return "Node{" +
+                    "data=" + data +
+                    ", next=" + next +
+                    '}';
         }
     }
 }

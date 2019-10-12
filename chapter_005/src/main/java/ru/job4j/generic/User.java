@@ -10,6 +10,10 @@ public class User extends Base {
         super(id);
     }
 
+    public String getId() {
+        return id;
+    }
+
     @Override
     public String toString() {
         return "User{" +
