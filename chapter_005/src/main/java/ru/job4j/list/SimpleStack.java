@@ -36,7 +36,7 @@ public class SimpleStack<T> {
         Node(T data) {
             this.data = data;
         }
-
+        
         @Override
         public String toString() {
             return "Node{" +
