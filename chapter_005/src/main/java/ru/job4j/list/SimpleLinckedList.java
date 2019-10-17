@@ -4,10 +4,10 @@ import java.util.ConcurrentModificationException;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-public class MyLinckedList<E> implements Iterable<E> {
+public class SimpleLinckedList<E> implements Iterable<E> {
 
     private int size;
-    private MyLinckedList.Node<E> first;
+    private SimpleLinckedList.Node<E> first;
     private int modCount = 0;
 
     public void add(E model) {
@@ -24,6 +24,18 @@ public class MyLinckedList<E> implements Iterable<E> {
             result = result.next;
         }
         return result.data;
+    }
+
+    public E deleteLast() {
+        if (this.size <= 0) {
+            throw new ArrayIndexOutOfBoundsException();
+        }
+        Node<E> result = this.first.next;
+        var temp = this.first.data;
+        this.first = null;
+        this.first = result;
+        this.size--;
+        return temp;
     }
 
     public int getSize() {
@@ -61,7 +73,7 @@ public class MyLinckedList<E> implements Iterable<E> {
     private static class Node<E> {
 
         E data;
-        MyLinckedList.Node<E> next;
+        SimpleLinckedList.Node<E> next;
 
         Node(E data) {
             this.data = data;

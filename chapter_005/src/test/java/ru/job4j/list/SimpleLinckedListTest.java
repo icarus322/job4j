@@ -9,13 +9,13 @@ import java.util.NoSuchElementException;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
 
-public class MyLinckedListTest {
+public class SimpleLinckedListTest {
 
-    private MyLinckedList<Integer> list;
+    private SimpleLinckedList<Integer> list;
 
     @Before
     public void beforeTest() {
-        list = new MyLinckedList<>();
+        list = new SimpleLinckedList<>();
         list.add(1);
         list.add(2);
         list.add(3);
@@ -31,6 +31,13 @@ public class MyLinckedListTest {
         assertThat(list.getSize(), is(3));
     }
 
+    @Test
+    public void whenAddThreeElementsAndDeleteTwoElementsThenUseGetSizeResultOne() {
+        list.deleteLast();
+        list.deleteLast();
+        assertThat(list.getSize(), is(1));
+
+    }
 
     @Test(expected = NoSuchElementException.class)
     public void hasNextNextSequentialInvocation() {
