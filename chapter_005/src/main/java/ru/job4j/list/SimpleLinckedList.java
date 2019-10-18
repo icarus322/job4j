@@ -42,8 +42,8 @@ public class SimpleLinckedList<E> implements Iterable<E> {
         return this.size;
     }
 
-    public Node<E> getFirst() {
-        return first;
+    public E getFirst() {
+        return first.data;
     }
 
     @Override
