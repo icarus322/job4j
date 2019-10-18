@@ -16,4 +16,8 @@ public class SimpleStack<T> {
         return list.getFirst();
     }
 
+    public boolean isEmpty() {
+        return list.isEmpty();
+    }
+
 }

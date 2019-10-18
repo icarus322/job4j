@@ -46,6 +46,10 @@ public class SimpleLinckedList<E> implements Iterable<E> {
         return first.data;
     }
 
+    public boolean isEmpty() {
+        return size == 0;
+    }
+
     @Override
     public Iterator<E> iterator() {
         return new Iterator<>() {
