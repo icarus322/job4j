@@ -56,5 +56,5 @@ public class RoleStoreTest {
     public void findById() {
         assertThat(role.findById("1"), is(new Role("1")));
     }
-    
+
 }
