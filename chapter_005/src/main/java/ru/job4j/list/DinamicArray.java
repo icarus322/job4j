@@ -37,6 +37,9 @@ public class DinamicArray<T> implements Iterable<T> {
         }
         return this.array[index];
     }
+    public int getSize() {
+        return addCounter;
+    }
 
     @Override
     public Iterator<T> iterator() {
