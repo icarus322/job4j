@@ -2,22 +2,22 @@ package ru.job4j.generic;
 
 import java.util.Iterator;
 
-public class AbstractStore implements Store<Base> {
+public class AbstractStore<T extends Base> implements Store<T> {
 
-    SimpleArray<Base> array;
+    SimpleArray<T> array;
 
-    public AbstractStore(Base[] Bases) {
-        array = new SimpleArray<>(Bases);
+    public AbstractStore(T[] base) {
+        array = new SimpleArray<>(base);
     }
 
 
     @Override
-    public void add(Base model) {
+    public void add(T model) {
         array.add(model);
     }
 
     @Override
-    public boolean replace(String id, Base model) {
+    public boolean replace(String id, T model) {
         boolean result;
         int temp = findId(id);
         if (temp == -1) {
@@ -43,8 +43,8 @@ public class AbstractStore implements Store<Base> {
     }
 
     @Override
-    public Base findById(String id) {
-        Base result;
+    public T findById(String id) {
+        T result;
         int temp = findId(id);
         if (temp == -1) {
             result = null;
@@ -57,7 +57,7 @@ public class AbstractStore implements Store<Base> {
     public int findId(String id) {
         int counter = 0;
         int check = 0;
-        Iterator<Base> it = this.array.iterator();
+        Iterator<T> it = this.array.iterator();
         while (it.hasNext()) {
             if (it.next().getId().equals(id)){
                 check = 1;
@@ -72,7 +72,7 @@ public class AbstractStore implements Store<Base> {
         return counter;
     }
 
-    public SimpleArray<Base> getArray() {
+    public SimpleArray<T> getArray() {
         return array;
     }
 }

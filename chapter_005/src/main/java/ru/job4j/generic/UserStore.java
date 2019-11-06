@@ -2,19 +2,19 @@ package ru.job4j.generic;
 
 
 
-public class UserStore extends AbstractStore implements Store<User>{
+public class UserStore<T extends User> extends AbstractStore<T> implements Store<T>{
 
-    public UserStore(User[] users) {
+    public UserStore(T[] users) {
         super(users);
     }
 
     @Override
-    public void add(User model) {
+    public void add(T model) {
         super.add(model);
     }
 
     @Override
-    public boolean replace(String id, User model) {
+    public boolean replace(String id, T model) {
         return super.replace(id, model);
     }
 
@@ -24,11 +24,11 @@ public class UserStore extends AbstractStore implements Store<User>{
     }
 
     @Override
-    public User findById(String id) {
-        return (User)super.findById(id);
+    public T findById(String id) {
+        return super.findById(id);
     }
 
-    public SimpleArray<User> getArray() {
+    public SimpleArray<T> getArray() {
         return super.getArray();
     }
 }
