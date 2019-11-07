@@ -6,20 +6,9 @@ import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
 
 public class SimpleStackTest {
-
+    
     @Test
-    public void poll() {
-        SimpleStack<Integer> stack = new SimpleStack<>();
-        stack.push(1);
-        assertThat(stack.getFirst(), is(1));
-        stack.push(2);
-        assertThat(stack.getFirst(), is(2));
-        stack.push(3);
-        assertThat(stack.getFirst(), is(3));
-    }
-
-    @Test
-    public void push() {
+    public void pollAndPush() {
         SimpleStack<Integer> stack = new SimpleStack<>();
         stack.push(1);
         stack.push(2);

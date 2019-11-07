@@ -12,10 +12,6 @@ public class SimpleStack<T> {
         list.add(value);
     }
 
-    public T getFirst() {
-        return list.getFirst();
-    }
-
     public boolean isEmpty() {
         return list.isEmpty();
     }
